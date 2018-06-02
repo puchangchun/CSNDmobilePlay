@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <com.android.csndmobileplay.view.SearchToolbar
+        android:id="@+id/main_activity_search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        >
+
+        <TextView
+            android:id="@+id/toolbar_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:drawableLeft="@drawable/ic_toolbar_more_selector"/>
+
+        <TextView
+            android:id="@+id/toolbar_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="60dp"
+            android:background="@drawable/tv_search_bg_selector"
+            android:clickable="true"
+            android:drawableLeft="@drawable/tv_search_selector"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="全网搜索"
+            android:textColor="@color/colorPrimaryDark"/>
+
+    </com.android.csndmobileplay.view.SearchToolbar>
+
+    <FrameLayout
+        android:id="@+id/fl_fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        >
+
+    </FrameLayout>
+
+    <RadioGroup
+        android:id="@+id/main_act_rg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:background="@color/rg_bg_color"
+        android:checkedButton="@+id/rb_video"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:textSize="10sp"
+            android:id="@+id/rb_video"
+            style="@style/bottom_rb_style"
+            android:drawableTop="@drawable/rb_video_drawable_selector"
+            android:paddingLeft="0dp"
+            android:text="本地视频"
+            />
+
+        <RadioButton
+            android:textSize="10sp"
+            android:id="@+id/rb_music"
+            style="@style/bottom_rb_style"
+            android:drawableTop="@drawable/rb_music_drawable_selector"
+            android:text="本地音乐"
+            />
+
+        <RadioButton
+            android:textSize="10sp"
+            android:id="@+id/rb_net_video"
+            style="@style/bottom_rb_style"
+            android:drawableTop="@drawable/rb_net_video_drawable_selector"
+            android:text="网络视频"
+            />
+
+        <RadioButton
+            android:textSize="10sp"
+            android:id="@+id/rb_net_music"
+            style="@style/bottom_rb_style"
+            android:drawableTop="@drawable/rb_net_music_drawable_selector"
+            android:text="网络音乐"
+            />
+
+    </RadioGroup>
+</LinearLayout>

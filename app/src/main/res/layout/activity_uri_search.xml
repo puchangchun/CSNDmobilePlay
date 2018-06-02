@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/app_bar_edit_text_uri"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/tv_search_bg_selector"
+        android:clickable="true"
+        android:drawableLeft="@drawable/tv_search_selector"
+        android:drawablePadding="5dp"
+        android:text="http://gslb.miaopai.com/stream/Q8oCXmTW1YyJqBNGMcESLo4X6DZvOvFMP4CO1g__.mp4"
+        android:textColor="#8000" />
+
+    <Button
+        android:layout_gravity="center"
+        android:id="@+id/app_bar_button_play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="播放Uri" />
+</LinearLayout>

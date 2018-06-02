@@ -1,0 +1,13 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_toolbar_game"
+        android:icon="@drawable/ic_game"
+        android:title="msg"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/menu_toolbar_history"
+        android:icon="@drawable/ic_history"
+        android:title="set"
+        app:showAsAction="ifRoom"/>
+</menu>

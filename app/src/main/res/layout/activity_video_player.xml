@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/video_player_top_relative"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+    <!--缓冲页面-->
+    <RelativeLayout
+        android:id="@+id/activity_video_buffering_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ProgressBar
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="5dp" />
+
+            <TextView
+                android:id="@+id/activity_video_buffering_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="加载中...30kb/s"
+                android:textColor="#ffff"
+                android:textSize="10sp" />
+        </LinearLayout>
+    </RelativeLayout>
+    <!--系统播放器-->
+    <com.android.csndmobileplay.view.MyVideoView
+        android:id="@+id/activity_video_system_video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+    <!--Vitamio播放器-->
+    <io.vov.vitamio.widget.VideoView
+        android:id="@+id/activity_video_vitamio_video_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        />
+    <include layout="@layout/my_video_controller" />
+</RelativeLayout>

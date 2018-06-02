@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="firstColor" format="color"/>
+    <attr name="secondColor" format="color"/>
+    <attr name="circleWidth" format="dimension"/>
+
+    <declare-styleable name="VolumeView">
+        <attr name="firstColor"/>
+        <attr name="secondColor"/>
+        <attr name="circleWidth"/>
+        <attr name="maxVolume" format="integer"/>
+    </declare-styleable>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#8c94bc</color>
+    <color name="colorPrimaryDark">#312727</color>
+    <color name="colorAccent">#d6afbc</color>
+    <color name="rg_bg_color">#e6e4e4</color>
+    <color name="progress_background">#12bacc</color>
+    <color name="seekbar_background">#4f535b</color>
+</resources>

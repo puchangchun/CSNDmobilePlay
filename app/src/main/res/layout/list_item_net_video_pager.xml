@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="400dp"
+    android:layout_marginBottom="5dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="330dp"
+        android:orientation="vertical">
+        <!--视频标题-->
+        <TextView
+            android:id="@+id/list_net_video_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="NAME"
+            android:textSize="18sp"/>
+
+        <!--视频信息-->
+        <TextView
+            android:id="@+id/list_net_video_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:ellipsize="middle"
+            android:gravity="left"
+            android:lines="2"
+            android:text="name----info------"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/list_item_video_selector">
+
+
+            <ImageView
+                android:id="@+id/list_net_video_pic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+
+            <ImageView
+                android:id="@+id/list_net_play_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/shape_play_image"
+                android:src="@drawable/ic_video_pic"/>
+
+
+            <!--视频时间-->
+            <TextView
+                android:id="@+id/list_net_video_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:background="#0000"
+                android:text="duration"
+                android:textColor="#ffff"/>
+            <!--视频大小-->
+            <TextView
+                android:id="@+id/list_net_video_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="10dp"
+                android:background="#0000"
+                android:text="size"
+                android:textColor="#ffff"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
