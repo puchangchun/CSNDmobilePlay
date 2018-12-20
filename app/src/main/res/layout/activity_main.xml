@@ -6,7 +6,7 @@
     android:orientation="vertical"
     >
 
-    <com.android.csndmobileplay.view.SearchToolbar
+    <com.android.puccmobileplay.view.SearchToolbar
         android:id="@+id/main_activity_search_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -35,7 +35,7 @@
             android:text="全网搜索"
             android:textColor="@color/colorPrimaryDark"/>
 
-    </com.android.csndmobileplay.view.SearchToolbar>
+    </com.android.puccmobileplay.view.SearchToolbar>
 
     <FrameLayout
         android:id="@+id/fl_fragment_content"

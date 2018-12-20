@@ -71,7 +71,7 @@
             android:textColor="#fff" />
     </LinearLayout>
     <!--音量图标-->
-    <com.android.csndmobileplay.view.VolumeView
+    <com.android.puccmobileplay.view.VolumeView
         android:id="@+id/my_video_controller_volume"
         android:layout_width="150dp"
         android:layout_height="150dp"

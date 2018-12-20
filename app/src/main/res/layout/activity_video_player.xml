@@ -33,7 +33,7 @@
         </LinearLayout>
     </RelativeLayout>
     <!--系统播放器-->
-    <com.android.csndmobileplay.view.MyVideoView
+    <com.android.puccmobileplay.view.MyVideoView
         android:id="@+id/activity_video_system_video_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

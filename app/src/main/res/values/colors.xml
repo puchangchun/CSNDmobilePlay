@@ -6,4 +6,7 @@
     <color name="rg_bg_color">#e6e4e4</color>
     <color name="progress_background">#12bacc</color>
     <color name="seekbar_background">#4f535b</color>
+    <color name="red">#545454</color>
+    <color name="dark_red">#2d2d2d</color>
+
 </resources>

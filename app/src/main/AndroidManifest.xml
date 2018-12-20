@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.csndmobileplay">
+    package="com.android.puccmobileplay">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -16,14 +16,14 @@
 
 
     <application
-        android:name=".base.MyApp"
+        android:name="com.android.puccmobileplay.base.MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/launcher_icon"
         android:label="player"
         android:roundIcon="@mipmap/launcher_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SplashActivity">
+        <activity android:name="com.android.puccmobileplay.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,13 +31,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.android.puccmobileplay.activity.MainActivity"
             android:launchMode="singleTask"
             >
 
         </activity>
         <activity
-            android:name=".activity.VideoPlayer"
+            android:name="com.android.puccmobileplay.activity.VideoPlayer"
             android:configChanges="keyboardHidden|screenSize|orientation"
             android:screenOrientation="behind">
             <intent-filter>
@@ -232,8 +232,8 @@
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity android:name=".activity.PermissionRequest" />
-        <activity android:name=".activity.UriSearch" />
+        <activity android:name="com.android.puccmobileplay.activity.PermissionRequest" />
+        <activity android:name="com.android.puccmobileplay.activity.UriSearch" />
     </application>
 
 </manifest>
