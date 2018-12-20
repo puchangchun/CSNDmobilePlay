@@ -24,5 +24,11 @@ public abstract class BasePager {
 
     public abstract View initView();
 
-    public abstract void initDate();
+    public void initDate(){
+        isInitDate = true;
+    }
+
+    public void releaseDate(){
+
+    }
 }

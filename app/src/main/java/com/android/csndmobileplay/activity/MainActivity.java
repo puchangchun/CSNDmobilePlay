@@ -16,7 +16,7 @@ import android.widget.RadioGroup;
 import com.android.csndmobileplay.R;
 import com.android.csndmobileplay.base.BasePager;
 import com.android.csndmobileplay.base.ContentFragment;
-import com.android.csndmobileplay.pager.AudioPager;
+import com.android.csndmobileplay.pager.BeatBoxPager;
 import com.android.csndmobileplay.pager.NetAudioPager;
 import com.android.csndmobileplay.pager.NetVideoPager;
 import com.android.csndmobileplay.pager.VideoPager;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         //0 - 3
         mBasePagers = new ArrayList<>();
         mBasePagers.add(new VideoPager(this));
-        mBasePagers.add(new AudioPager(this));
+        mBasePagers.add(new BeatBoxPager(this));
         mBasePagers.add(new NetVideoPager(this));
         mBasePagers.add(new NetAudioPager(this));
         setFragmentContainer();
@@ -98,6 +98,10 @@ public class MainActivity extends AppCompatActivity {
      * 打包提交给fragmentManager
      */
     private void setFragmentContainer() {
+
+        if(mCheckedPager != null){
+            mCheckedPager.releaseDate();
+        }
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         updateCheckedBasePager();
@@ -116,7 +120,6 @@ public class MainActivity extends AppCompatActivity {
         mCheckedPager = mBasePagers.get(mCheckedPosition);
         if (!mCheckedPager.isInitDate) {
             mCheckedPager.initDate();
-            mCheckedPager.isInitDate = true;
         }
 
     }

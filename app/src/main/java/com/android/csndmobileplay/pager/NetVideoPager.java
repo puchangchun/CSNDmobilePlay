@@ -21,7 +21,7 @@ import com.android.csndmobileplay.Util.Constants;
 import com.android.csndmobileplay.activity.VideoPlayer;
 import com.android.csndmobileplay.base.BasePager;
 import com.android.csndmobileplay.bean.NetVideoInfo;
-import com.android.csndmobileplay.mod.VideoLab;
+import com.android.csndmobileplay.mod.ModLab;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -77,6 +77,7 @@ public class NetVideoPager extends BasePager {
      */
     @Override
     public void initDate() {
+        super.initDate();
         String netJson = CacheUtils.getString(mContext,NET_VIDEO_JSON);
         if (netJson.equals("")){
             getJson();
@@ -141,7 +142,7 @@ public class NetVideoPager extends BasePager {
                     .build();
 
             mBufferingProgress.setVisibility(GONE);
-            netVideoAdapter = new NetVideoAdapter(VideoLab.get(mContext).getNetVideoList());
+            netVideoAdapter = new NetVideoAdapter(ModLab.get(mContext).getNetVideoList());
             mNetVideoRecycler.setAdapter(netVideoAdapter);
             isUpdate = true;
         }else {
@@ -167,7 +168,7 @@ public class NetVideoPager extends BasePager {
                     netVideoInfo.setSummary(object.optString("summary"));
                     netVideoInfo.setVideoName(object.optString("movieName"));
                     netVideoInfo.setVideoLength(object.optString("videoLength"));
-                    VideoLab.get(mContext).addNetVideoInfo(netVideoInfo);
+                    ModLab.get(mContext).addNetVideoInfo(netVideoInfo);
                 }
             }
             updateUI();
@@ -231,7 +232,7 @@ public class NetVideoPager extends BasePager {
          * @param position List的位置
          */
         public void bindView(int position) {
-            mNetVideoInfo = VideoLab.get(mContext).getNetVideoInfo(position);
+            mNetVideoInfo = ModLab.get(mContext).getNetVideoInfo(position);
             x.image().bind(mImageViewCoverImg, mNetVideoInfo.getCoverImgUrl(),imageOptions);
             mTextViewName.setText(mNetVideoInfo.getVideoName());
             mTextViewSummuary.setText(mNetVideoInfo.getSummary());

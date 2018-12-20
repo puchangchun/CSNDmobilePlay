@@ -24,7 +24,7 @@ import android.widget.TextView;
 import com.android.csndmobileplay.R;
 import com.android.csndmobileplay.base.BasePager;
 import com.android.csndmobileplay.bean.VideoInfo;
-import com.android.csndmobileplay.mod.VideoLab;
+import com.android.csndmobileplay.mod.ModLab;
 import com.android.csndmobileplay.activity.VideoPlayer;
 
 import java.io.File;
@@ -68,6 +68,7 @@ public class VideoPager extends BasePager {
 
     @Override
     public void initDate() {
+        super.initDate();
         /**
          * 下拉刷新的监听
          */
@@ -80,7 +81,7 @@ public class VideoPager extends BasePager {
         /**
          * 设置Recycler配置
          */
-        mList = VideoLab.get(mContext).getLocalVideoList();
+        mList = ModLab.get(mContext).getLocalVideoList();
         mVideoAdapter= new VideoAdapter(mList);
 
         sendMsg(GET_DATA_START);
