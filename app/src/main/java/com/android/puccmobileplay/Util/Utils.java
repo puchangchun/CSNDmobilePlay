@@ -1,7 +1,11 @@
 package com.android.puccmobileplay.Util;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.TrafficStats;
+import android.support.v7.app.AlertDialog;
+
+import com.android.puccmobileplay.base.AlertDialogCallBack;
 
 import java.text.SimpleDateFormat;
 import java.util.TimeZone;
@@ -59,5 +63,23 @@ public class Utils {
             return String.valueOf(speed)+"kb/s";
         }
 
+    }
+
+    public static void showAlertDialog(Context context, String title, String content, final AlertDialogCallBack callBack) {
+        new AlertDialog.Builder(context)
+                .setTitle(title)
+                .setMessage(content)
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        callBack.startPositive();
+                    }
+                })
+                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        callBack.startNegative();
+                    }
+                }).setCancelable(false).show();
     }
 }

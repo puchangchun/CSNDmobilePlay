@@ -4,10 +4,14 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +25,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.puccmobileplay.BuildConfig;
 import com.android.puccmobileplay.R;
 import com.android.puccmobileplay.base.BasePager;
 import com.android.puccmobileplay.bean.VideoInfo;
@@ -32,6 +37,8 @@ import java.util.List;
 
 import com.android.puccmobileplay.Util.MediaScanner;
 import com.android.puccmobileplay.Util.Utils;
+import com.bumptech.glide.Glide;
+
 
 import static android.content.ContentValues.TAG;
 
@@ -53,7 +60,6 @@ public class VideoPager extends BasePager {
     private VideoAdapter mVideoAdapter;
 
 
-
     public VideoPager(Context context) {
         super(context);
     }
@@ -63,6 +69,7 @@ public class VideoPager extends BasePager {
         mView = View.inflate(mContext, R.layout.fragment_video_pager, null);
         mSwipeRefreshLayout = (SwipeRefreshLayout) mView.findViewById(R.id.fragment_video_swipe_refresh);
         mHandler = new VideoPagerHandle();
+
         return mView;
     }
 
@@ -106,49 +113,68 @@ public class VideoPager extends BasePager {
      * 开启线程加载手机媒体库数据
      */
     private void getDataFromLocal() {
-        new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                Log.e(TAG, "run: "+Thread.currentThread().getName() );
-                //访问内容提供者获取媒体数据
-                ContentResolver contentResolver = mContext.getContentResolver();
-                Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
-                String[] objs = {
-                        //视频在外部存储器的名字
-                        MediaStore.Video.Media.DISPLAY_NAME,
-                        //时长
-                        MediaStore.Video.Media.DURATION,
-                        //文件大小
-                        MediaStore.Video.Media.SIZE,
-                        //视频的绝对地址
-                        MediaStore.Video.Media.DATA,
-                        //艺术家
-                        MediaStore.Video.Media.ARTIST
-                };
-                Cursor cursor = contentResolver.query(uri, objs, null, null, null);
-                if (cursor != null && cursor.getCount() > 0) {
-                    mList.clear();
-                    while (cursor.moveToNext()) {
-                        VideoInfo videoInfo = new VideoInfo();
-                        mList.add(videoInfo);
-                        videoInfo.setVideoName(cursor.getString(0));
-                        videoInfo.setVideoDuration(cursor.getLong(1));
-                        videoInfo.setVideoSize(cursor.getLong(2));
-                        videoInfo.setVideoPath(cursor.getString(3));
-                        videoInfo.setVideoArtist(cursor.getString(4));
-                    }
-                    cursor.close();
-                }
-                //通知主线程数据情况
-                if (mList != null && mList.size() > 0) {
-                    sendMsg(GET_DATA_COMPLETE);
-                }else {
-                    sendMsg(GET_DATA_NULL);
+        ModLab.get(mContext).getExecutor().execute(()->{
+            Log.e(TAG, "run: "+Thread.currentThread().getName() );
+            //访问内容提供者获取媒体数据
+            ContentResolver contentResolver = mContext.getContentResolver();
+            Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
+
+            String[] thumbColumns = new String[]{
+                            MediaStore.Video.Thumbnails.DATA,
+                            MediaStore.Video.Thumbnails.VIDEO_ID
+                    };
+            String[] objs = {
+                    //视频在外部存储器的名字
+                    MediaStore.Video.Media.DISPLAY_NAME,
+                    //时长
+                    MediaStore.Video.Media.DURATION,
+                    //文件大小
+                    MediaStore.Video.Media.SIZE,
+                    //视频的绝对地址
+                    MediaStore.Video.Media.DATA,
+                    //艺术家
+                    MediaStore.Video.Media.ARTIST,
+                    //视频的唯一ID
+                    MediaStore.Video.Media._ID
+
+            };
+            Cursor cursor = contentResolver.query(uri, objs, null, null, null);
+            if (cursor != null && cursor.getCount() > 0) {
+                mList.clear();
+                while (cursor.moveToNext()) {
+                    VideoInfo videoInfo = new VideoInfo();
+                    mList.add(videoInfo);
+
+                    videoInfo.setVideoName(cursor.getString(0));
+                    videoInfo.setVideoDuration(cursor.getLong(1));
+                    videoInfo.setVideoSize(cursor.getLong(2));
+                    videoInfo.setVideoPath(cursor.getString(3));
+                    videoInfo.setVideoArtist(cursor.getString(4));
+/*                    int id = cursor.getInt(5);
+                    String selection = MediaStore.Video.Thumbnails.VIDEO_ID +"=?";
+                    String[] selectionArgs = new String[]{
+                            id+""
+                    };
+                    Cursor thumbCursor=contentResolver.query(MediaStore.Video.Thumbnails.EXTERNAL_CONTENT_URI,thumbColumns, selection, selectionArgs, null);
+                            if(thumbCursor.moveToFirst()){
+                                videoInfo.setThumbPath(thumbCursor.getString(thumbCursor.getColumnIndex(MediaStore.Video.Thumbnails.DATA)));
+                            }
+                    thumbCursor.close();*/
+
                 }
 
+                cursor.close();
             }
-        }.start();
+            //通知主线程数据情况
+            if (mList != null && mList.size() > 0) {
+                sendMsg(GET_DATA_COMPLETE);
+            }else {
+                sendMsg(GET_DATA_NULL);
+            }
+
+        }
+        );
+
     }
 
     public void sendMsg(int i) {
@@ -210,6 +236,8 @@ public class VideoPager extends BasePager {
             mVedioName.setText(vedioInfo.getVideoName());
             mVedioDuration.setText(Utils.msToTime(vedioInfo.getVideoDuration()));
             mVedioPath = vedioInfo.getVideoPath();
+           // Bitmap videoThumbnail = ThumbnailUtils.createVideoThumbnail(vedioInfo.getVideoPath(), MediaStore.Images.Thumbnails.MICRO_KIND);
+            Glide.with(mContext).load(vedioInfo.getVideoPath()).centerCrop().into(mVedioPic);
             mPosition= position;
             mGestureDetector = new GestureDetector(mContext,new GestureDetector.SimpleOnGestureListener(){
                 @Override
@@ -217,7 +245,12 @@ public class VideoPager extends BasePager {
                     Log.i(TAG, "onLongPress: ");
                     //1 调用播放视频工具
                     Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setDataAndType(Uri.parse("file://"+mVedioPath),"video/*");
+                    //sdk 24, 不能用file 要用content
+
+                    Uri uri = FileProvider.getUriForFile(mContext,
+                            BuildConfig.APPLICATION_ID + ".provider",
+                            new File(mVedioPath));
+                    intent.setDataAndType(uri,"video/*");
                     mContext.startActivity(intent);
                 }
 

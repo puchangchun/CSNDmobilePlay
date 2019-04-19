@@ -17,15 +17,15 @@
 
         <ImageView
             android:id="@+id/list_video_pic"
-            android:layout_width="80dp"
+            android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_gravity="center_horizontal"
             android:layout_margin="10dp"
-            android:src="@drawable/ic_video_pic"/>
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:orientation="vertical">
 

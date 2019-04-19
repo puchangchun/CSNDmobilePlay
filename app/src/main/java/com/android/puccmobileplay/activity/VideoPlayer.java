@@ -105,7 +105,6 @@ public class VideoPlayer extends AppCompatActivity implements View.OnClickListen
     private String mNetSpeedTxt;
     private TextView mBufferingViewSpeed;
     private VideoView mVitamioVideoView;
-    private Button mBtnSwitchVideo;
     private Handler mHandler;
 
 
@@ -177,7 +176,6 @@ public class VideoPlayer extends AppCompatActivity implements View.OnClickListen
         mBtnVideoControl.setOnClickListener(this);
         mBtnVideoNext.setOnClickListener(this);
         mBtnSwitchScreen.setOnClickListener(this);
-        mBtnSwitchVideo.setOnClickListener(this);
         initSystemVideoListener();
     }
 
@@ -417,7 +415,6 @@ public class VideoPlayer extends AppCompatActivity implements View.OnClickListen
     }
 
     private void initViewAndValue() {
-        mBtnSwitchVideo = (Button) findViewById(R.id.btn_change_video_view);
         mBufferingViewSpeed = (TextView) findViewById(R.id.activity_video_buffering_speed);
         mBufferingView = (RelativeLayout) findViewById(R.id.activity_video_buffering_view);
         mController = (RelativeLayout) findViewById(R.id.my_video_controller);
@@ -587,14 +584,6 @@ public class VideoPlayer extends AppCompatActivity implements View.OnClickListen
             } else {
                 isLandscape = false;
                 setRequestedOrientation(SCREEN_ORIENTATION_SENSOR_LANDSCAPE);
-            }
-        } else if (v == mBtnSwitchVideo) {
-            if (!isVitamioVideo) {
-                mBtnSwitchVideo.setText("Vitamio");
-                startVitamioVideo();
-            } else {
-                mBtnSwitchVideo.setText("System");
-                startSystemVideo();
             }
         }
         mHandler.sendEmptyMessageDelayed(UPDATE_VIDEO_CONTROLLER, 5000);

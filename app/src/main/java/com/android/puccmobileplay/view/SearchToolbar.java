@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.android.puccmobileplay.R;
 import com.android.puccmobileplay.activity.UriSearch;
+import com.android.puccmobileplay.activity.WeatherMainActivity;
 
 /**
  * 扩展Toolbar
@@ -50,7 +51,9 @@ public class SearchToolbar extends Toolbar implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.toolbar_more:
-                Toast.makeText(mContext,"sss",Toast.LENGTH_SHORT).show();
+                //天气
+                Intent intent = new Intent(mContext,WeatherMainActivity.class);
+                mContext.startActivity(intent);
                 break;
             case R.id.toolbar_search:
                 mContext.startActivity(new Intent(mContext, UriSearch.class));

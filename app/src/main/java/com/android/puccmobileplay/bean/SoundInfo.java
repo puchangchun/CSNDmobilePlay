@@ -8,7 +8,7 @@ public class SoundInfo {
     public SoundInfo(String assetPath) {
         mAssetPath = assetPath;
         String[] strings = mAssetPath.split("/");
-        mName = strings[strings.length-1].replace(".wav","");
+        mName = strings[strings.length-1].replace(".wav","").split("_")[0];
     }
 
     public int getSoundId() {

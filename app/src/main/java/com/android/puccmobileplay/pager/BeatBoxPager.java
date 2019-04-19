@@ -72,7 +72,9 @@ public class BeatBoxPager extends BasePager {
             super.handleMessage(msg);
             switch (msg.what){
                 case INIT_DATA_COMPLETE:
-                    mProgressBar.setVisibility(View.INVISIBLE);
+                    if (isInitDate) {
+                        mProgressBar.setVisibility(View.INVISIBLE);
+                    }
                     break;
                 default:
             }

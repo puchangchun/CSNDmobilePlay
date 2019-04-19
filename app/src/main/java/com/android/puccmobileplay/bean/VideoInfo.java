@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 public class VideoInfo implements Serializable{
     private static final long serialVersionUID= 1L;
+    private String thumbPath;
     private long mVideoSize;
     private long mVideoDuration;
     private String mVideoName;
@@ -22,6 +23,14 @@ public class VideoInfo implements Serializable{
         mVideoSize = vedioSize;
         mVideoDuration = vedioDuration;
         mVideoName = vedioName;
+    }
+
+    public String getThumbPath() {
+        return thumbPath;
+    }
+
+    public void setThumbPath(String thumbPath) {
+        this.thumbPath = thumbPath;
     }
 
     public String getVideoArtist() {

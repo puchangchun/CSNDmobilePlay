@@ -7,12 +7,13 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-        <item name="buttonStyle">@style/BeatBoxButton</item>
     </style>
 
     <style name="AlertDialogTheme" parent="Theme.AppCompat.Dialog.Alert"></style>
 
-
+    <style name="TextInputLayoutErrorTextAppearance">
+        <item name="android:textColor">#FFFF0011</item>
+    </style>
 
     <style name="bottom_rb_style">
         <!-- Customize your theme here. -->
@@ -26,7 +27,4 @@
         <item name="android:textSize">11sp</item>
     </style>
 
-    <style name="BeatBoxButton" parent="android:Widget.Material.Button">
-        <item name="android:background">@drawable/button_beat_box</item>
-    </style>
 </resources>

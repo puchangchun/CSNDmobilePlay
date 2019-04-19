@@ -7,8 +7,8 @@ import android.net.Uri;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.android.puccmobileplay.R;
 import com.android.puccmobileplay.Util.CacheUtils;
-import com.android.puccmobileplay.Util.Constants;
+import com.android.puccmobileplay.Util.Constant;
 import com.android.puccmobileplay.activity.VideoPlayer;
 import com.android.puccmobileplay.base.BasePager;
 import com.android.puccmobileplay.bean.NetVideoInfo;
@@ -33,6 +33,7 @@ import org.xutils.image.ImageOptions;
 import org.xutils.x;
 
 import java.util.List;
+
 
 import static android.view.View.GONE;
 
@@ -68,7 +69,7 @@ public class NetVideoPager extends BasePager {
         mNetVideoRecycler = (RecyclerView) v.findViewById(R.id.fragment_net_video_pager_recycler);
         mBufferingProgress =(ProgressBar) v.findViewById(R.id.fragment_net_video_pager_progress_bar);
         mSwipeRefresh = (SwipeRefreshLayout)v.findViewById(R.id.fragment_net_video_swipe_refresh);
-        mNetVideoRecycler.setLayoutManager(new GridLayoutManager(mContext,2));
+        mNetVideoRecycler.setLayoutManager(new GridLayoutManager(mContext,1));
         return v;
     }
 
@@ -101,10 +102,11 @@ public class NetVideoPager extends BasePager {
 
 
     private void getJson() {
-        RequestParams params = new RequestParams(Constants.NET_VIDEO_JSON_URI);
+        RequestParams params = new RequestParams(Constant.NET_VIDEO_JSON_URI);
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
+
                 //请求成功会更新RecyclerView
                 CacheUtils.putString(mContext, NET_VIDEO_JSON,result);
                 parseJson(result);
@@ -131,6 +133,31 @@ public class NetVideoPager extends BasePager {
 
             }
         });
+
+/*        OkHttpClient okHttpClient = new OkHttpClient();
+        final Request request = new Request.Builder()
+                .url(Constant.NET_VIDEO_JSON_URI)
+                .get()//默认就是GET请求，可以不写
+                .build();
+        Call call = okHttpClient.newCall(request);
+        call.enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                //隐藏加载框，提示错误
+                if (mSwipeRefresh.isRefreshing()){
+                    mSwipeRefresh.setRefreshing(false);
+                }
+                mBufferingProgress.setVisibility(GONE);
+                showErrorDialog(e.getMessage());
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                //请求成功会更新RecyclerView
+                CacheUtils.putString(mContext, NET_VIDEO_JSON,response.body().string());
+                parseJson(response.body().string());
+            }
+        });*/
     }
 
     private void updateUI() {
@@ -158,6 +185,7 @@ public class NetVideoPager extends BasePager {
 
     private void parseJson(String json) {
         try {
+            Log.e(TAG, "parseJson: "+json );
             JSONObject jsonObject = new JSONObject(json);
             JSONArray jsonArray = jsonObject.optJSONArray("trailers");
             if (jsonArray != null) {

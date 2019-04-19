@@ -164,14 +164,6 @@
                 android:background="#8000"
                 android:src="@drawable/btn_video_switch_screen_full_selector" />
 
-            <Button
-                android:id="@+id/btn_change_video_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toLeftOf="@id/btn_video_switch_screen"
-                android:gravity="center"
-                android:text="切换解码器"
-                android:textSize="8sp" />
 
 
         </RelativeLayout>

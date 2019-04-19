@@ -10,7 +10,7 @@
         android:id="@+id/main_activity_search_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/rg_bg_color"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         >
 
@@ -32,7 +32,7 @@
             android:drawableLeft="@drawable/tv_search_selector"
             android:drawablePadding="5dp"
             android:gravity="center"
-            android:text="全网搜索"
+            android:text="搜索"
             android:textColor="@color/colorPrimaryDark"/>
 
     </com.android.puccmobileplay.view.SearchToolbar>
@@ -62,7 +62,7 @@
             style="@style/bottom_rb_style"
             android:drawableTop="@drawable/rb_video_drawable_selector"
             android:paddingLeft="0dp"
-            android:text="本地视频"
+            android:text="文件"
             />
 
         <RadioButton
@@ -70,7 +70,7 @@
             android:id="@+id/rb_music"
             style="@style/bottom_rb_style"
             android:drawableTop="@drawable/rb_music_drawable_selector"
-            android:text="本地音乐"
+            android:text="娱乐"
             />
 
         <RadioButton
@@ -78,7 +78,7 @@
             android:id="@+id/rb_net_video"
             style="@style/bottom_rb_style"
             android:drawableTop="@drawable/rb_net_video_drawable_selector"
-            android:text="网络视频"
+            android:text="电影"
             />
 
         <RadioButton
@@ -86,7 +86,7 @@
             android:id="@+id/rb_net_music"
             style="@style/bottom_rb_style"
             android:drawableTop="@drawable/rb_net_music_drawable_selector"
-            android:text="网络音乐"
+            android:text="个人"
             />
 
     </RadioGroup>
