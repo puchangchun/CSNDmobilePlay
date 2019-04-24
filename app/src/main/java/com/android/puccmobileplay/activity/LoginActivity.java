@@ -183,7 +183,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            Utils.showAlertDialog(getApplicationContext(), "登陆失败", ss, new AlertDialogCallBack() {
+                                            Utils.showAlertDialog(LoginActivity.this, "登陆失败", ss, new AlertDialogCallBack() {
                                                 @Override
                                                 public void startPositive() {
 

@@ -5,9 +5,6 @@ import android.content.Context;
 import com.android.puccmobileplay.model.dao.ContactTableDao;
 
 
-/**
- * Created by Administrator on 2016/9/24.
- */
 // 联系人和邀请信息表的操作类的管理类
 public class DBManager {
 

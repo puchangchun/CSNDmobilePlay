@@ -1,8 +1,6 @@
 package com.android.puccmobileplay.model.dao;
 
-/**
- * Created by Administrator on 2016/9/24.
- */
+
 // 联系人表的建表语句
 public class ContactTable {
     public static final String TAB_NAME = "tab_contact";

@@ -7,7 +7,6 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.IdRes;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -26,8 +25,6 @@ import com.android.puccmobileplay.R;
 import com.android.puccmobileplay.base.AlertDialogCallBack;
 import com.android.puccmobileplay.base.BasePager;
 import com.android.puccmobileplay.base.ContentFragment;
-import com.android.puccmobileplay.pager.BeatBoxPager;
-import com.android.puccmobileplay.pager.NetAudioPager;
 import com.android.puccmobileplay.pager.NetVideoPager;
 import com.android.puccmobileplay.pager.SettingsPager;
 import com.android.puccmobileplay.pager.VideoPager;
@@ -147,7 +144,6 @@ public class MainActivity extends AppCompatActivity {
     private void setFragmentContainer() {
 
         if (mCheckedPosition == 99){
-            mEaseConversationList.hideTitleBar();
             FragmentManager fm = getSupportFragmentManager();
             FragmentTransaction ft = fm.beginTransaction();
             ft.replace(R.id.fl_fragment_content, mEaseConversationList);

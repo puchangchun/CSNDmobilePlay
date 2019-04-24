@@ -7,9 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.android.puccmobileplay.model.dao.ContactTable;
 
 
-/**
- * Created by Administrator on 2016/9/24.
- */
+
 public class DBHelper extends SQLiteOpenHelper {
 
     public DBHelper(Context context, String name) {

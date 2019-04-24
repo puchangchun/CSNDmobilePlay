@@ -11,9 +11,7 @@ import com.android.puccmobileplay.model.db.DBHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Administrator on 2016/9/24.
- */
+
 // 联系人表的操作类
 public class ContactTableDao {
     private DBHelper mHelper;
